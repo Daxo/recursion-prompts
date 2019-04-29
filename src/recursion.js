@@ -57,20 +57,55 @@ var arraySum = function (array) {
   let currentVal = arr.pop();
 
   if (Array.isArray(currentVal)) {
-      return arraySum(currentVal) + arraySum(arr);
-    } else {
-      return currentVal + arraySum(arr);
-    }
+    return arraySum(currentVal) + arraySum(arr);
+  } else {
+    return currentVal + arraySum(arr);
+  }
 
 };
 
 // 4. Check if a number is even.
-var isEven = function (n) {};
+var isEven = function (n) {
+
+  //null case
+  if (n === 0) {
+    return true;
+  }
+
+  //base case
+  if (n === 1) {
+    return false;
+  }
+
+  //recursive case
+  if (0 < n) {
+    return isEven(n - 2);
+  } else {
+    return isEven(n + 2);
+  }
+
+};
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-var sumBelow = function (n) {};
+var sumBelow = function (n) {
+
+  if (n === 0) {
+    return 0;
+  }
+
+  if (0 < n) {
+
+    return (n - 1) + sumBelow(n - 1);
+
+  } else {
+
+    return (n + 1) + sumBelow(n + 1);
+
+  }
+
+};
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
