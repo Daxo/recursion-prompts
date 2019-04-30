@@ -158,10 +158,43 @@ var exponent = function (base, exp) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function (n) {};
+var powerOfTwo = function (n) {
+
+  //base case(s)
+
+  //if input is 1 or 2 return true
+  if (n === 1) {
+    return true;
+  }
+
+  //if input is not evenly divisible by 2 return false
+  if ((n % 2) != 0 || n === 0) {
+    return false;
+  }
+
+  //recursive case
+  //divide n by 2 and call powerOfTwo
+  return powerOfTwo(n / 2);
+};
 
 // 9. Write a function that reverses a string.
-var reverse = function (string) {};
+var reverse = function (string) {
+
+  //don't modify original string
+  let str = string.slice();
+
+  //base case -- if string length is 0, return empty string
+  if (str.length === 0) {
+    return '';
+  }
+
+  //recursive case -- grab the last character of the string and add it to recusive call
+  let currentChar = str.slice(str.length - 1);
+  str = str.slice(0, str.length - 1);
+
+  return currentChar + reverse(str);
+
+};
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function (string) {};
