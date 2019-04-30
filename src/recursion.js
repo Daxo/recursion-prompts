@@ -287,7 +287,13 @@ var multiply = function (x, y) {
     return x;
   } 
 
-  if (1 < y) {
+  if (0 < y) {
+
+    if (x < 0) {
+
+      return x + multiply(x, y - 1);
+
+    }
 
     if (0 < x) {
 
@@ -295,20 +301,24 @@ var multiply = function (x, y) {
 
     }
 
-    if (x < 0) {
-
-      return x - multiply(x, y - 1);
-
-    }
-
   }
 
-  if (y < -1) {
+  if (y < 0) {
 
     if (x < 0) { 
 
-    return x + multiply(x, y + 1);
+     let yABS = 0 - y;
+     let xABS = 0 - x;
+     return xABS + multiply(xABS, yABS - 1);
 
+    }
+
+    if (x > 0) {
+
+      let yABS = 0 - y;
+      let xNeg = 0 - x;
+      return xNeg + multiply(xNeg, yABS - 1);
+      
     }
 
   }
