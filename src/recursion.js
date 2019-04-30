@@ -189,22 +189,91 @@ var reverse = function (string) {
   }
 
   //recursive case -- grab the last character of the string and add it to recusive call
-  let currentChar = str.slice(str.length - 1);
-  str = str.slice(0, str.length - 1);
+  let currentChar = str.slice(-1);
+  str = str.slice(0, -1);
 
   return currentChar + reverse(str);
 
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function (string) {};
+var palindrome = function (string) {
+
+  // make a copy as to not modify the original string
+  let str = string.slice();
+
+  // base case -- string length is 0 return true
+  if (str.length === 0 || str.length === 1) {
+    return true;
+  }
+
+  let firstChar = str.slice(0, 1);
+  firstChar = firstChar.toLowerCase();
+  let lastChar = str.slice(-1);
+  lastChar = lastChar.toLowerCase();
+  // base case -- if the first and last characters don't match return false
+  if (firstChar != lastChar) {
+    return false;
+  }
+
+  // recusive case -- slice the first and last chacters off and pass the remaining into palindrome
+  str = str.slice(1);
+  str = str.slice(-1);
+  return palindrome(str);
+
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function (x, y) {};
+var modulo = function (x, y) {
+
+  if (y === 0) {
+    return NaN;
+  }
+
+  if (x <= 0) {
+
+    if (y < 0) {
+
+      if (x < y) {
+        return modulo(x - y, y);
+      }
+
+      if (x > y) {
+        return x;
+      }
+
+    }
+
+    if (0 < y) {
+
+      if (0 < x + y) {
+        return x;
+      }
+
+      if (x + y <= 0) {
+
+        return modulo(x + y, y);
+
+      }
+
+    }
+
+    return x;
+
+    
+  }
+
+  if (x < y) {
+    return x;
+  }
+
+  return modulo(x - y, y);
+
+};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
